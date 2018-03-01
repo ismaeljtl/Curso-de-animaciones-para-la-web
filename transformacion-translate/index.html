@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Transformacion traslate</title>
+    <style>
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: white;
+            font-family: Arial;
+            /* perspective: 200px;
+            perspective-origin: center; */
+            /* perspective-origin: x y; */
+            /* perspective-origin: top | bottom | left | right; */
+            /* perspective-origin: top right; */
+        }
+        .container{
+            border: 1px solid red;
+            perspective: 200px;
+            perspective-origin: center;
+        }
+        .container:hover .cuadrado{
+            
+            /* Para las traslaciones necesito una propiedad
+                de perspectiva (al momento de usa el eje Z)
+                para esto colocamos al body perspective: Npx;
+
+                Ojo: tambien sirve colocando el perspective
+                al container!
+             */
+
+            /* transform: translate(x);*/
+            /* transform: translate(-100px); */
+            /* transform: translateX(100px); */
+
+            /* transform: translate(x, y);                        */
+            /* transform: translate(100px, -100px);                        */
+            /* transform: translateY(100px); */
+
+            /* transform: translateZ(100px); */
+
+            transform: translate3d(100px, 100px,-100px);
+        }
+        .cuadrado{
+            width: 200px;
+            height: 200px;
+            background: #7dc900;
+            margin: 20px;
+            transition: .3s;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="cuadrado">
+            Hola mundo!
+        </div>
+    </div>
+</body>
+</html>
