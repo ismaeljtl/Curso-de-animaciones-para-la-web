@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Carrusel</title>
+    <style>
+        .container{
+            border: solid 1px red;
+            width: 50%;
+            height: 100px;   
+            position: relative;
+            margin-top: 50px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .tarjeta{
+            border: solid 1px red;
+            width: 100px;
+            height: 100px;
+            position: absolute;
+        }
+        .boton{
+            margin-top: 75px;
+            text-align: center;
+        }
+        .a{ 
+            background-color: coral;
+            left: 0; 
+            z-index: 0;
+            animation-name: AtoE;
+            animation-duration: 2s;
+        }
+        .b{ 
+            background-color: orangered; 
+            transform: scale(1.5, 1.5);             
+            left: calc(25% - 50px);
+            z-index: 1;
+            animation-name: BtoA;
+            animation-duration: 2s;
+        }
+        .c{ 
+            background-color: purple; 
+            transform: scale(2, 2); 
+            left: calc(50% - 50px);
+            z-index: 2;
+            animation-name: CtoB;
+            animation-duration: 2s;
+        }
+        .d{ 
+            background-color: steelblue; 
+            transform: scale(1.5, 1.5); 
+            right: calc(25% - 50px);
+            z-index: 1;
+            animation-name: DtoC;
+            animation-duration: 2s;
+        }
+        .e{ 
+            background-color: cadetblue; 
+            right: 0; 
+            z-index: 0;
+            animation-name: EtoD;
+            animation-duration: 2s;
+        }  
+
+        @keyframes BtoA {
+            from{
+                left: calc(25% - 50px);
+                transform: scale(1.5, 1.5);
+                z-index: 1;                
+            }
+            to{
+                left: 0;
+                transform: scale(1, 1); 
+                z-index: 0;                               
+            }
+        }
+
+        @keyframes CtoB {
+            from{
+                left: calc(50% - 50px);
+                transform: scale(2, 2);
+                z-index: 2;                
+            }
+            to{
+                left: calc(25% - 50px);
+                transform: scale(1.5, 1.5); 
+                z-index: 1;                               
+            }
+        }
+
+        @keyframes DtoC {
+            from{
+                left: calc(75% - 50px);
+                transform: scale(1.5, 1.5);
+                z-index: 1;
+                
+            }
+            to{
+                left: calc(50% - 50px);
+                transform: scale(2, 2);
+                z-index: 2;            
+            }
+        }   
+
+        @keyframes EtoD {
+            from{
+                right: 0;
+                transform: scale(1, 1);
+                z-index: 0;
+                
+            }
+            to{
+                right: calc(25% - 50px);
+                transform: scale(1.5, 1.5);
+                z-index: 1;            
+            }
+        }   
+
+        @keyframes AtoE {
+            from{
+                left: 0;
+                z-index: 0;
+            }
+            to{
+                left: calc(100% - 100px);
+                z-index: 0;            
+            }
+        }   
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="tarjeta a"></div>
+        <div class="tarjeta b"></div>
+        <div class="tarjeta c"></div>
+        <div class="tarjeta d"></div>
+        <div class="tarjeta e"></div>        
+    </div>
+    <div class="boton">
+        <button id="prev"><<</button>
+        <button id="next">>></button>        
+    </div>
+</body>
+</html>
