@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Notificacion</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <style>
+        body{
+            background: url('../img/notificacion.png');
+            background-size: 100%;
+            height: 200vh;
+            margin: 0;
+        }
+        .notification{
+            color: white;
+            width: 50px;
+            height: inherit;
+
+            display: flex;
+            align-items: center; /* <- alineacion vertical con Flexbox! */
+            justify-content: center; /* <- alineacion horizontal con Flexbox! */
+            position: relative;
+        }
+        .notification:after{
+            content: attr(data-count);
+            font-size: 11px;
+            font-weight: bold;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            min-width: 14px;
+            height: 14px;
+
+            background: #ff4600;
+            border-radius: 50%;
+
+            font-family: Arial;
+            position: absolute;
+
+            top: 5px;
+            right: 5px;
+            opacity: 0;
+            transition: .3s;
+            transform: scale(.5);
+            will-change: opacity, transform;
+        }
+        .notification:before{
+            content: "\f0f3";
+            font-family: "FontAwesome";
+            display: block;
+            transform-origin: center top;
+        }
+        .notification.notify:before{
+            animation-name: bell;
+            animation-duration: 1s;
+            animation-timing-function: ease-out;
+        }
+        @keyframes bell {
+            0%{
+                transform: rotate(35deg);
+            }
+            12.5%{
+                transform: rotate(-30deg);
+            }
+            25%{
+                transform: rotate(25deg);                
+            }
+            37.5%{
+                transform: rotate(-20deg);                
+            }
+            50%{
+                transform: rotate(15deg);                
+            }
+            62.5%{
+                transform: rotate(-10deg);                
+            }
+            77.5%{
+                transform: rotate(5deg);                
+            }
+            100%{
+                transform: rotate(0deg);
+            }
+        }
+        .notification.show-count:after{
+            opacity: 1;
+            transform: scale(1);
+        }
+        .header {
+            background: #1d3644;
+            display: flex;
+            height: 52px;
+            justify-content: flex-end;
+            padding-right: 200px;
+        }
+        .btn {
+        text-align: center;
+        background-color: lightgray;
+        padding: .6em .8em .8em;
+        border: none;
+        color: white;
+        margin: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+        box-shadow: inset 0 -.2em rgba(0,0,0, .2);
+        outline: 0;
+        transition: .2s;
+        will-change: transform;
+        }
+        .btn.primary {
+            background-color: #7dc800;
+        }
+        .btn.warning {
+            background-color: #ff463b;
+        }
+        .btn:active {
+            transform: scale(.9);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="notification" id="notification"></div>
+        <button class="btn primary" id="btn">Enviar Notificacion</button>
+    </div>
+
+    <script>
+        const $btn = document.getElementById('btn');
+        const $bell = document.getElementById('notification');
+        $btn.addEventListener('click', function(){
+            const count = Number($bell.getAttribute('data-count')) || 0;
+            $bell.setAttribute('data-count' ,count + 1);
+            $bell.classList.add('show-count');
+            $bell.classList.add('notify');
+        });
+        // como la clase se agrega arriba, a la segunda vez que presiono 
+        // el boton ya no se mueve la campana (pues la clase ya esta agregada)
+        // para corregir esto debemos quitar la clase notify cuando termina la animacion
+        $bell.addEventListener('animationend', function(){
+            $bell.classList.remove('notify');
+        });
+    </script>
+</body>
+</html>
