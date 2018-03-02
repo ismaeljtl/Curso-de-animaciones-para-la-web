@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Twitter like</title>
+</head>
+<style>
+    body{
+        display: flex;
+        height: 100vh;
+        margin: 0;
+        align-items: center;
+        justify-content: center;
+    }
+    .like{
+        background-image: url('../img/corazon.png');
+        /* 2900 / 29 = 100px por pasos */
+        cursor: pointer;
+        width: 50px;
+        height: 50px;
+        background-size: 1450px 50px;
+    }
+    .like.is-liked{
+        animation-name: like;
+        animation-duration: .8s;
+        animation-timing-function: steps(28);
+        /* background-position: right; */
+        animation-fill-mode: forwards;
+    }
+    .like.is-dislike{
+        animation-name: dislike;
+        animation-duration: .8s;
+        animation-timing-function: steps(29);
+        /* background-position: right; */
+        animation-fill-mode: forwards;
+    }
+
+    @keyframes like{
+        0%{
+            background-position: 0, 0;
+        }
+        100%{
+            /* background-position: -2800px, 0; */
+            background-position: right;            
+        }
+    }
+
+    @keyframes dislike{
+        0%{
+            background-position: right;
+        }
+        100%{
+            /* background-position: -2800px, 0; */
+            background-position: left;            
+        }
+    }
+</style>
+<body>
+    <div class="tweet-box">
+        <div class="like" id="like"></div>
+    </div>
+
+    <script>
+        const $like = document.getElementById('like');
+        $like.addEventListener('click', function(){
+            // if (!$like.classList.contains('is-liked')){
+            //     $like.classList.remove('is-disliked');
+            //     $like.classList.add('is-liked');
+            // }else{
+            //     $like.classList.remove('is-liked');
+            //     $like.classList.add('is-disliked');
+            // } ->> esto es igual a lo de abajo!
+            $like.classList.toggle('is-liked');
+        });
+    </script>
+</body>
+</html>
