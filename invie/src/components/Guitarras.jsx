@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import acustica from '../images/invie-acustica.png'
-import clasica from '../images/invie-classic.png'
 
 class Guitarras extends Component {
     render(){
@@ -14,18 +12,29 @@ class Guitarras extends Component {
                     </div>
                     </div>
                 </div>
-                <article className="guitarra"> 
-                    <img className="derecha" src={acustica}  alt="Guitarra Invie Acustica" width="350"/>
-                    <div className="contenedor-guitarra-a">
-                    <h3 className="title-b">Invie Acustica</h3>
-                    <ol>
-                        <li>Estilo vintage</li>
-                        <li>Madera pura</li>
-                        <li>Incluye estuche invisible de aluminio</li>
-                    </ol>
-                    </div>
-                </article>
-                <article className="guitarra b">
+                {
+                    this.props.guitarras.map(function(guitarra, index){
+                        return (
+                            <article className="guitarra" key={index}> 
+                                <img className="derecha" src={guitarra.image}  alt={guitarra.alt} width="350"/>
+                                <div className="contenedor-guitarra-a">
+                                <h3 className="title-b">{guitarra.name}</h3>
+                                <ol>
+                                    {
+                                        guitarra.features.map(function(feature, index){
+                                            return (
+                                                <li key={index}>{feature}</li>
+                                            )
+                                        })
+                                    }
+                                </ol>
+                                </div>
+                            </article>
+                        )
+                    })
+                }
+                
+                {/* <article className="guitarra b">
                     <img className="izquierda" src={ clasica } alt="Guitarra Invie Classic" width="350"/>
                     <div className="contenedor-guitarra-b">
                     <h3 className="title-b">Invie Classic</h3>
@@ -35,7 +44,7 @@ class Guitarras extends Component {
                         <li>Inicia tu camino como Rockstar</li>
                     </ol>
                     </div>
-                </article>
+                </article> */}
             </section>
         )
     }
