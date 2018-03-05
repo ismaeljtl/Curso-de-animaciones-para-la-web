@@ -29,39 +29,29 @@
             background-color: coral;
             left: 0; 
             z-index: 0;
-            animation-name: AtoE;
-            animation-duration: 2s;
         }
         .b{ 
             background-color: orangered; 
             transform: scale(1.5, 1.5);             
             left: calc(25% - 50px);
             z-index: 1;
-            animation-name: BtoA;
-            animation-duration: 2s;
         }
         .c{ 
             background-color: purple; 
             transform: scale(2, 2); 
             left: calc(50% - 50px);
             z-index: 2;
-            animation-name: CtoB;
-            animation-duration: 2s;
         }
         .d{ 
             background-color: steelblue; 
             transform: scale(1.5, 1.5); 
             right: calc(25% - 50px);
             z-index: 1;
-            animation-name: DtoC;
-            animation-duration: 2s;
         }
         .e{ 
             background-color: cadetblue; 
             right: 0; 
             z-index: 0;
-            animation-name: EtoD;
-            animation-duration: 2s;
         }  
 
         @keyframes BtoA {
@@ -108,13 +98,13 @@
             from{
                 right: 0;
                 transform: scale(1, 1);
+                right: 0; 
                 z-index: 0;
-                
             }
             to{
                 right: calc(25% - 50px);
                 transform: scale(1.5, 1.5);
-                z-index: 1;            
+                z-index: 1;
             }
         }   
 
@@ -125,22 +115,60 @@
             }
             to{
                 left: calc(100% - 100px);
-                z-index: 0;            
+                z-index: 0;      
             }
         }   
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="tarjeta a"></div>
-        <div class="tarjeta b"></div>
-        <div class="tarjeta c"></div>
-        <div class="tarjeta d"></div>
-        <div class="tarjeta e"></div>        
+        <div class="tarjeta a" id="a">A</div>
+        <div class="tarjeta b" id="b">B</div>
+        <div class="tarjeta c" id="c">C</div>
+        <div class="tarjeta d" id="d">D</div>
+        <div class="tarjeta e" id="e">E</div>        
     </div>
     <div class="boton">
         <button id="prev"><<</button>
         <button id="next">>></button>        
     </div>
+
+    <script>
+        var $prev = document.getElementById('prev');
+        
+        $prev.addEventListener('click', function(){
+            var $a = document.getElementsByClassName("a")[0];
+            var $b = document.getElementsByClassName("b")[0];
+            var $c = document.getElementsByClassName("c")[0];
+            var $d = document.getElementsByClassName("d")[0];
+            var $e = document.getElementsByClassName("e")[0];
+
+            $a.style.animation = 'AtoE 2s forwards';
+            $b.style.animation = 'BtoA 2s forwards';
+            $c.style.animation = 'CtoB 2s forwards';
+            $d.style.animation = 'DtoC 2s forwards';
+            $e.style.animation = 'EtoD 2s forwards';
+
+            $a.addEventListener('animationend', function(){
+                $a.classList.remove('a');
+                $b.classList.remove('b');
+                $c.classList.remove('c');
+                $d.classList.remove('d');
+                $e.classList.remove('e');
+                $a.classList.add('e');
+                $b.classList.add('a');
+                $c.classList.add('b');
+                $d.classList.add('c');
+                $e.classList.add('d');
+
+                $a.style.animation = '';
+                $b.style.animation = '';
+                $c.style.animation = '';
+                $d.style.animation = '';
+                $e.style.animation = '';
+            });
+
+        });
+    </script>
 </body>
 </html>
