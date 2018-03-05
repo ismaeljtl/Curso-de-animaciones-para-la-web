@@ -201,16 +201,60 @@ input:focus, textarea:focus {
 
 
 .guitarra {
-  margin: 10px 10px 40px 10px;
-  padding: 10px;
+  margin: 10px 0 40px;
+  padding: 10px 2em;
   /*overflow: hidden;*/
   border: 1px solid #1F313C;
-  border-radius: 8px;
+  border-radius: 3px;
+
+  display: flex;
+  align-items: center;
+  min-height: 250px;
+  transition: .3s;
+  position: relative;
+}
+.guitarra:hover{
+  /* box-shadow: x y % color; */
+  box-shadow: 10px 10px 0 #ff3149;
+}
+.guitarra:nth-of-type(even):hover{
+  /* box-shadow: x y % color; */
+  box-shadow: -10px 10px 0 black;
+}
+.guitarra-name{
+  font-size: 3em;
+  margin: 0 0 0.2em;
+  padding-bottom: .2em;
+  border-bottom: 2px dashed #1e313d;
+}
+.guitarra:nth-of-type(even) .guitarra-image {
+  left: 0;
+  right: initial;
+}
+.guitarra-image {
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
 .guitarra ol {
   padding: 0;
+  list-style-type: none;
+  counter-reset: features;
 }
-.guitarra.b {
+.guitarra li:before {
+  counter-increment: features;
+  content: counter(features) ". ";
+}
+
+/* .guitarra:nth-of-type(2) { */
+/* .guitarra:nth-of-type(odd /* <- impares *//*) { */
+/* .guitarra:nth-of-type(even /* <- pares*//*) { */
+.guitarra:nth-of-type(even) {
+  justify-content: flex-end;
+}
+
+
+/* .guitarra.b {
   height: 190px;
 }
 
@@ -224,7 +268,7 @@ input:focus, textarea:focus {
 .izquierda {
   float: left;
   position: relative;
-}
+} */
 
 .contenedor-guitarra-a {
   padding-left: 20px;
